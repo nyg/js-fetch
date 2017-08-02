@@ -6,26 +6,34 @@ var nygFetch = (function () {
         return self.fetch
     }
 
-    nygFetch.getJSON = function (apiUrl) {
-        return fetch(apiUrl).then(checkStatus).then(parseJSON).catch(error)
+    nygFetch.fetch = function (url) {
+        return fetch(url).then(checkStatus)
+    }
+
+    nygFetch.fetchJSON = function (url, external = false) {
+
+        var yqlQuery = encodeURIComponent('select * from json where url="' + url + '"'),
+            yqlUrl = 'http://query.yahooapis.com/v1/public/yql?format=json&q=' + yqlQuery
+
+        return nygFetch
+            .fetch(external ? yqlUrl : url)
+            .then(function (response) {
+                return response.json()
+            })
+            .then(function (json) {
+                return external ? json.query.results.json : json
+            })
     }
 
     function checkStatus(response) {
 
-        if (response.status >= 200 && response.status < 300) {
+        if (response.status >= 200 && response.status < 300 || response.status == 2) {
             return response
         }
         else {
-            return new Error(response.statusText)
+            console.log('error');
+            return new Error('Received response with status: [' + response.status + ', ' + response.statusText + ']')
         }
-    }
-
-    function parseJSON(response) {
-        return response.json()
-    }
-
-    function error(e) {
-        console.log("Error: ", e);
     }
 
     return nygFetch

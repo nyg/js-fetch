@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Tests for js-fetch</title>
+        <meta charset="utf-8" />
+        <style media="screen">
+            pre {
+                border: 1px solid black;
+                padding: 20px;
+                margin: 20px;
+            }
+
+            .error {
+                color: red;
+            }
+        </style>
+    </head>
+    <body>
+        <script src="../fetch.js"></script>
+        <script>
+            // a JSON document on a server we don't have access to
+            var externalUrl = 'https://www.bitstamp.net/api/ticker/',
+                internalUrl = 'internal.json'
+
+            // get local JSON
+            nygFetch.fetchJSON(internalUrl).then(showResult).catch(showError)
+
+            // get external JSON -- works locally
+            nygFetch.fetchJSON(externalUrl, false).then(showResult).catch(showError)
+
+            // get external JSON
+            nygFetch.fetchJSON(externalUrl, true).then(showResult).catch(showError)
+
+            function showResult(json) {
+                console.log(json);
+                var pre = document.createElement('pre')
+                document.body.insertAdjacentElement('afterbegin', pre)
+                pre.insertAdjacentText('beforeend', JSON.stringify(json))
+            }
+
+            function showError(e) {
+                console.log(e);
+                var pre = document.createElement('pre')
+                document.body.insertAdjacentElement('afterbegin', pre)
+                pre.insertAdjacentText('beforeend', JSON.stringify(e))
+                pre.className = 'error'
+            }
+        </script>
+    </body>
+</html>
