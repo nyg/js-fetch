@@ -2,12 +2,8 @@ var nygFetch = (function () {
 
     var nygFetch = {}
 
-    nygFetch.hasFetch = function () {
-        return self.fetch
-    }
-
     nygFetch.fetch = function (url) {
-        return fetch(url).then(checkStatus)
+        return fetch(url).then(checkStatus).catch(e => { throw e })
     }
 
     nygFetch.fetchJSON = function (url, external = false) {
@@ -17,12 +13,9 @@ var nygFetch = (function () {
 
         return nygFetch
             .fetch(external ? yqlUrl : url)
-            .then(function (response) {
-                return response.json()
-            })
-            .then(function (json) {
-                return external ? json.query.results.json : json
-            })
+            .then(response => response.json())
+            .then(json => external ? json.query.results.json : json)
+            .catch(e => { throw e })
     }
 
     function checkStatus(response) {
@@ -31,8 +24,7 @@ var nygFetch = (function () {
             return response
         }
         else {
-            console.log('error');
-            return new Error('Received response with status: [' + response.status + ', ' + response.statusText + ']')
+            throw new Error('Error: received response with status: [' + response.status + ', "' + response.statusText + '"]')
         }
     }
 

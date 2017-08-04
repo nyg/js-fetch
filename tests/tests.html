@@ -32,18 +32,20 @@
             nygFetch.fetchJSON(externalUrl, true).then(showResult).catch(showError)
 
             function showResult(json) {
-                console.log(json);
-                var pre = document.createElement('pre')
-                document.body.insertAdjacentElement('afterbegin', pre)
-                pre.insertAdjacentText('beforeend', JSON.stringify(json))
+                console.log(json)
+                pre(`Result: ${JSON.stringify(json)}`)
             }
 
             function showError(e) {
-                console.log(e);
+                console.log(e)
+                pre(`${e.message}\n${JSON.stringify(e)}`, 'error')
+            }
+
+            function pre(content, className) {
                 var pre = document.createElement('pre')
                 document.body.insertAdjacentElement('afterbegin', pre)
-                pre.insertAdjacentText('beforeend', JSON.stringify(e))
-                pre.className = 'error'
+                pre.insertAdjacentText('beforeend', content)
+                pre.className = className
             }
         </script>
     </body>
