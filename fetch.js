@@ -17,13 +17,15 @@ var nygFetch = (function () {
                 .then(response => response.json())
                 .then(json => external ? json.query.results.json : json)
                 .catch(e => {
+                    console.log('err1');
                     console.log(e);
                     throw e
                 })
         }
         catch (e) {
-            console.log('err');
+            console.log('err2');
             console.log(e);
+            throw new Error('bad')
         }
     }
 
