@@ -12,7 +12,7 @@ var nygFetch = (function () {
             yqlUrl = 'https://query.yahooapis.com/v1/public/yql?format=json&q=' + yqlQuery
 
         try {
-            var promise = nygFetch
+            return nygFetch
                 .fetch(external ? yqlUrl : url)
                 .then(response => response.json())
                 .then(json => external ? json.query.results.json : json)
