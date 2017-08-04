@@ -18,6 +18,15 @@
     <body>
         <script src="../fetch.js"></script>
         <script>
+            window.onerror = function (message, file, line, col, error) {
+               alert("Error occured: " + error.message);
+               return false;
+            };
+            window.addEventListener("error", function (e) {
+               alert("Error occured: " + e.error.message);
+               return false;
+            })
+
             // a JSON document on a server we don't have access to
             var externalUrl = 'https://www.bitstamp.net/api/ticker/',
                 internalUrl = 'internal.json'
