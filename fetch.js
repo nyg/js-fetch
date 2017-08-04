@@ -11,11 +11,20 @@ var nygFetch = (function () {
         var yqlQuery = encodeURIComponent('select * from json where url="' + url + '"'),
             yqlUrl = 'https://query.yahooapis.com/v1/public/yql?format=json&q=' + yqlQuery
 
-        return nygFetch
-            .fetch(external ? yqlUrl : url)
-            .then(response => response.json())
-            .then(json => external ? json.query.results.json : json)
-            .catch(e => { throw e })
+        try {
+            var promise = nygFetch
+                .fetch(external ? yqlUrl : url)
+                .then(response => response.json())
+                .then(json => external ? json.query.results.json : json)
+                .catch(e => {
+                    console.log(e);
+                    throw e
+                })
+        }
+        catch (e) {
+            console.log('err');
+            console.log(e);
+        }
     }
 
     function checkStatus(response) {
