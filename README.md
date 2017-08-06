@@ -9,6 +9,14 @@ Code examples can be found in tests/tests.html. Check the Github pages to see th
 
 ## Use
 
-The latest version of the wrapper is located at: https://nyg.github.io/js-fetch/fetch.js.
+To use the latest version:
 
-For a specific version, use https://nyg.github.io/js-fetch/fetch-x.y.z.js. Check the tags for the available version numbers.
+```
+<script src="https://nyg.github.io/js-fetch/fetch.js"></script>
+```
+
+For a specific version:
+
+```
+<script src="https://nyg.github.io/js-fetch/fetch-x.y.z.js"></script>
+```
