@@ -20,7 +20,7 @@ var nygFetch = (function () {
     nygFetch.fetch = function (url) {
         return fetch(url)
             .then(checkResponseStatus)
-            .catch(nyg.rethrowError)
+            .catch(nygFetch.rethrowError)
     }
 
     nygFetch.fetchJSON = function (url, external = false) {
@@ -32,7 +32,7 @@ var nygFetch = (function () {
             .fetch(external ? yqlUrl : url)
             .then(response => response.json())
             .then(json => external ? json.query.results.json : json)
-            .catch(nyg.rethrowError)
+            .catch(nygFetch.rethrowError)
     }
 
     nygFetch.rethrowError = function (error) {
