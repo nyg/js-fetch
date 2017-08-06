@@ -17,13 +17,10 @@ var nygFetch = (function () {
         }
     }
 
-    nygFetch.fetch = function (url, external) {
-        return fetch(url, external ? {} : { mode: 'same-origin' })
+    nygFetch.fetch = function (url) {
+        return fetch(url)
             .then(checkResponseStatus)
-            .catch(e => {
-                console.log(`err1 ${e}`)
-                throw e
-            })
+            .catch(nyg.rethrowError)
     }
 
     nygFetch.fetchJSON = function (url, external = false) {
@@ -32,13 +29,10 @@ var nygFetch = (function () {
             yqlUrl = 'https://query.yahooapis.com/v1/public/yql?format=json&q=' + yqlQuery
 
         return nygFetch
-            .fetch(external ? yqlUrl : url, external)
+            .fetch(external ? yqlUrl : url)
             .then(response => response.json())
             .then(json => external ? json.query.results.json : json)
-            .catch(e => {
-                console.log(`err2 ${e}`)
-                throw e
-            })
+            .catch(nyg.rethrowError)
     }
 
     nygFetch.rethrowError = function (error) {
@@ -48,7 +42,6 @@ var nygFetch = (function () {
     function checkResponseStatus(response) {
 
         if (response.status >= 200 && response.status < 300 || response.status == 0) {
-            console.log(`Received response with status: ${response.status}`);
             return response
         }
         else {
