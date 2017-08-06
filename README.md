@@ -5,18 +5,12 @@
 
 ## Examples
 
-Code examples can be found in tests/tests.html. Check the Github pages to see them live: https://nyg.github.io/js-fetch/tests/tests.html.
+Code examples can be found in tests/tests.html. Live examples [here](https://nyg.github.io/js-fetch/tests/tests.html).
 
 ## Use
 
-To use the latest version:
+RawGit can be used to serve a specific version (see [tags](https://github.com/nyg/js-fetch/tags)):
 
 ```html
-<script src="https://nyg.github.io/js-fetch/fetch.js"></script>
-```
-
-For a specific version:
-
-```html
-<script src="https://nyg.github.io/js-fetch/fetch-x.y.z.js"></script>
+<script src="https://cdn.rawgit.com/nyg/js-fetch/x.y.z/fetch.js"></script>
 ```
