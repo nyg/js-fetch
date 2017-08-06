@@ -11,12 +11,12 @@ Code examples can be found in tests/tests.html. Check the Github pages to see th
 
 To use the latest version:
 
-```
+```html
 <script src="https://nyg.github.io/js-fetch/fetch.js"></script>
 ```
 
 For a specific version:
 
-```
+```html
 <script src="https://nyg.github.io/js-fetch/fetch-x.y.z.js"></script>
 ```
