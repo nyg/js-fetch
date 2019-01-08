@@ -31,7 +31,7 @@
             // get external JSON
             nygFetch.fetchJSON(externalUrl, true).then(showResult).catch(showError)
 
-            // should fail: get external JSON (works locally)
+            // should fail: get external JSON
             nygFetch.fetchJSON(externalUrl, false).then(showResult).catch(showError)
 
             function showResult(json) {

@@ -25,13 +25,11 @@ var nygFetch = (function () {
 
     nygFetch.fetchJSON = function (url, external = false) {
 
-        var yqlQuery = encodeURIComponent('select * from json where url="' + url + '"'),
-            yqlUrl = 'https://query.yahooapis.com/v1/public/yql?format=json&q=' + yqlQuery
+        var extUrl = 'https://cors.io/?' + url
 
         return nygFetch
-            .fetch(external ? yqlUrl : url)
+            .fetch(external ? extUrl : url)
             .then(response => response.json())
-            .then(json => external ? json.query.results.json : json)
             .catch(nygFetch.rethrowError)
     }
 
