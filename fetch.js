@@ -1,12 +1,12 @@
-var nygFetch = (function () {
+var nygFetch = (function() {
 
     var nygFetch = {}
 
-    nygFetch.checkAvailability = function (elementId = undefined) {
+    nygFetch.checkAvailability = function(elementId = undefined) {
 
         if (!self.fetch) {
 
-            var errorMessage = 'Your web browser doesn\'t support the Fetch API, please use a newer one.'
+            const errorMessage = 'Your web browser doesn\'t support the Fetch API, please use a newer one.'
 
             if (elementId) {
                 document.getElementById(elementId).textContent = errorMessage
@@ -17,15 +17,15 @@ var nygFetch = (function () {
         }
     }
 
-    nygFetch.fetch = function (url) {
+    nygFetch.fetch = function(url) {
         return fetch(url)
             .then(checkResponseStatus)
             .catch(nygFetch.rethrowError)
     }
 
-    nygFetch.fetchJSON = function (url, external = false) {
+    nygFetch.fetchJSON = function(url, external = false) {
 
-        var extUrl = 'https://cors.io/?' + url
+        const extUrl = 'https://cors-anywhere.herokuapp.com/' + url
 
         return nygFetch
             .fetch(external ? extUrl : url)
@@ -33,7 +33,7 @@ var nygFetch = (function () {
             .catch(nygFetch.rethrowError)
     }
 
-    nygFetch.rethrowError = function (error) {
+    nygFetch.rethrowError = function(error) {
         throw error
     }
 
