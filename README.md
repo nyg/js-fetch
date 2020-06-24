@@ -2,7 +2,7 @@
 
 ## Description
 
-`js-fetch` is a lightweight wrapper around the Javascript Fetch API. At the moment, its main use is for retrieving JSON from external URLs (using [cors.io](https://cors.io)).
+`js-fetch` is a basic wrapper around the Javascript Fetch API. At the moment, its main use is for retrieving JSON from external URLs (using [cors-anywhere.herokuapp.com](https://cors-anywhere.herokuapp.com)).
 
 ## Examples
 
@@ -15,3 +15,4 @@ Code examples can be found in tests/tests.html. Live examples [here](https://nyg
 ```html
 <script src="https://cdn.jsdelivr.net/gh/nyg/js-fetch@x.y.z/fetch.js"></script>
 ```
+
